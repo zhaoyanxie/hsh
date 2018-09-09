@@ -43,7 +43,7 @@ const Footer = () => {
                 <List.Item
                   icon="twitter"
                   content={
-                    <a href="https://twitter.com/parmsang" alt="twitter link">
+                    <a href="https://twitter.com/" alt="twitter link">
                       Twitter
                     </a>
                   }
@@ -51,7 +51,10 @@ const Footer = () => {
                 <List.Item
                   icon="facebook"
                   content={
-                    <a href="https://facebook.com/" alt="facebook link">
+                    <a
+                      href="https://www.facebook.com/KitchenplusWare/"
+                      alt="facebook link"
+                    >
                       Facebook
                     </a>
                   }
