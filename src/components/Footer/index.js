@@ -1,5 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Segment, Container, Grid, List, Header } from "semantic-ui-react";
+
+const footerLinks = [
+  {
+    colWidth: 4,
+    header: "About Us",
+    links: [
+      { link: "/our_products", text: "Our Products" },
+      { link: "/our_retail_stores", text: "Our Retail Stores" }
+    ]
+  },
+  {
+    colWidth: 5,
+    header: "Services",
+    links: [{ link: "/services", text: "Our Services" }]
+  }
+];
 
 const Footer = () => {
   return (
@@ -14,25 +31,21 @@ const Footer = () => {
       <Container text>
         <Grid stackable>
           <Grid.Row width={4}>
-            <Grid.Column width={4}>
-              <Header as="h4" content="About" />
-              <List>
-                <List.Item as="a" to="/privacy/">
-                  Privacy
-                </List.Item>
-                <List.Item as="a" to="/terms/">
-                  Terms
-                </List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <Header as="h4" content="Services" />
-              <List>
-                <List.Item as="a" to="/">
-                  Our Products
-                </List.Item>
-              </List>
-            </Grid.Column>
+            {footerLinks.map(footerLink => {
+              return (
+                <Grid.Column width={footerLink.colWidth}>
+                  <Header as="h4" content={footerLink.header} />
+                  {footerLink.links.map(link => (
+                    <List>
+                      <List.Item as="a">
+                        <Link to={link.link}>{link.text}</Link>
+                      </List.Item>
+                    </List>
+                  ))}
+                </Grid.Column>
+              );
+            })}
+
             <Grid.Column width={7}>
               <Header as="h4">Footer Header</Header>
               <p>

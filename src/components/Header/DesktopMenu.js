@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Container, Menu, Icon } from "semantic-ui-react";
 import Logo from "./Logo";
 
@@ -30,25 +31,30 @@ export default class DesktopMenu extends Component {
     return (
       <Menu borderless pointing>
         <Container text>
-          <Menu.Item
-            header
-            name="store"
-            active={activeItem === "store"}
-            onClick={this.handleItemClick}
-          >
-            <Logo />
-            Kitchen+Ware
-          </Menu.Item>
+          <Link to="/">
+            <Menu.Item
+              header
+              name="store"
+              active={activeItem === "store"}
+              onClick={this.handleItemClick}
+            >
+              <Logo />
+              Kitchen+Ware
+            </Menu.Item>
+          </Link>
 
           <Menu.Menu position="right">
             <Menu.Item
-              name="history"
-              active={activeItem === "history"}
+              name="our_story"
+              active={activeItem === "our_story"}
               onClick={this.handleItemClick}
             >
-              <Icon name="group" />
-              Our Story
+              <Link to="our_story" style={{ color: "black" }}>
+                <Icon name="group" />
+                Our Story
+              </Link>
             </Menu.Item>
+
             <Menu.Item
               name="stores"
               active={activeItem === "stores"}
