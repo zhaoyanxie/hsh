@@ -1,8 +1,8 @@
 {
-  "name": "kitchen-plus-ware",
+  "name": "hsh",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://zhaoyanxie.github.io/kitchen-plus-ware",
+  "homepage": "http://zhaoyanxie.github.io/hsh",
   "dependencies": {
     "google-maps-react": "^2.0.2",
     "react": "^16.5.0",
