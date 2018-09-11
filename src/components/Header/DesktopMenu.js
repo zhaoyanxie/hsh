@@ -27,45 +27,46 @@ export default class DesktopMenu extends Component {
 
   render() {
     const { activeItem } = this.state;
-    // const { token, cartCount } = this.props;
     return (
       <Menu borderless pointing>
         <Container text>
-          <Link to="/">
-            <Menu.Item
-              header
-              name="store"
-              active={activeItem === "store"}
-              onClick={this.handleItemClick}
-            >
-              <Logo />
-              Kitchen+Ware
-            </Menu.Item>
-          </Link>
+          <Menu.Item
+            header
+            as={Link}
+            to="/"
+            name="store"
+            active={activeItem === "store"}
+            onClick={this.handleItemClick}
+          >
+            <Logo />
+            Kitchen+Ware
+          </Menu.Item>
 
           <Menu.Menu position="right">
             <Menu.Item
+              as={Link}
+              to="/our_story"
               name="our_story"
               active={activeItem === "our_story"}
               onClick={this.handleItemClick}
             >
-              <Link to="our_story" style={{ color: "black" }}>
-                <Icon name="group" />
-                Our Story
-              </Link>
+              <Icon name="group" />
+              Our Story
             </Menu.Item>
 
             <Menu.Item
+              as={Link}
+              to="/our_stores"
               name="stores"
               active={activeItem === "stores"}
               onClick={this.handleItemClick}
             >
-              <Link to="our_stores" style={{ color: "black" }}>
-                <Icon name="map marker alternate" />
-                Our Stores
-              </Link>
+              <Icon name="map marker alternate" />
+              Our Stores
             </Menu.Item>
             <Menu.Item
+              as={Link}
+              to="/contact_us"
               name="contact"
               active={activeItem === "contact"}
               onClick={this.handleItemClick}
