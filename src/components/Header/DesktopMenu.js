@@ -60,8 +60,10 @@ export default class DesktopMenu extends Component {
               active={activeItem === "stores"}
               onClick={this.handleItemClick}
             >
-              <Icon name="map marker alternate" />
-              Our Stores
+              <Link to="our_stores" style={{ color: "black" }}>
+                <Icon name="map marker alternate" />
+                Our Stores
+              </Link>
             </Menu.Item>
             <Menu.Item
               name="contact"

@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HomePage from "../pages/homepage";
 import OurStory from "../pages/ourstory";
+import OurStores from "../pages/ourstores";
 
 class App extends PureComponent {
   render() {
@@ -22,6 +23,7 @@ class App extends PureComponent {
           </header>
           <Route path="/" exact component={HomePage} />
           <Route path="/our_story" exact component={OurStory} />
+          <Route path="/our_stores" exact component={OurStores} />
           <Footer />
         </div>
       </BrowserRouter>
