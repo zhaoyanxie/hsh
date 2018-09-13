@@ -24,15 +24,22 @@ export default class OurStores extends Component {
     });
   };
 
+  componentDidMount() {
+    const { pathname } = this.props.location;
+    this.props.updateLocation(pathname);
+  }
+
   render() {
     const { center, zoom } = this.state;
     return (
       <Container text>
-        <GoogleApiWrapper
-          mapCenter={center}
-          zoom={zoom}
-          onMapLoaded={this.onMapLoaded}
-        />
+        {
+          <GoogleApiWrapper
+            mapCenter={center}
+            zoom={zoom}
+            onMapLoaded={this.onMapLoaded}
+          />
+        }
       </Container>
     );
   }

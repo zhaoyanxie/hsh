@@ -6,7 +6,13 @@ import Footer from "../components/Footer";
 import HomePage from "../pages/homepage";
 import OurProducts from "../pages/ourproducts";
 import OurStores from "../pages/ourstores";
-import { HOMEPAGE, OUR_PRODUCTS, OUR_STORES } from "../pages/endpoints";
+import {
+  HOMEPAGE,
+  OUR_PRODUCTS,
+  OUR_STORES,
+  CONTACT
+} from "../pages/endpoints";
+import ContactUs from "../pages/contactus";
 
 class App extends PureComponent {
   constructor() {
@@ -43,8 +49,26 @@ class App extends PureComponent {
                 <OurProducts {...props} updateLocation={this.updateLocation} />
               )}
             />
-            <Route path={OUR_STORES} component={OurStores} />
-            <Route exact path={HOMEPAGE} component={HomePage} />
+            <Route
+              path={OUR_STORES}
+              component={props => (
+                <OurStores {...props} updateLocation={this.updateLocation} />
+              )}
+            />
+            <Route
+              exact
+              path={HOMEPAGE}
+              component={props => (
+                <HomePage {...props} updateLocation={this.updateLocation} />
+              )}
+            />
+            <Route
+              exact
+              path={CONTACT}
+              component={props => (
+                <ContactUs {...props} updateLocation={this.updateLocation} />
+              )}
+            />
           </Switch>
           <Footer />
         </div>
