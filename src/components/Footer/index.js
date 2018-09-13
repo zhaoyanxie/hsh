@@ -18,7 +18,7 @@ const footerLinks = [
   {
     colWidth: 5,
     header: "Services",
-    links: [{ id: "link-3", link: "/hsh/services", text: "Our Services" }]
+    links: [{ id: "link-3", link: "/hsh/rfq", text: "Ask for Quotation" }]
   }
 ];
 
