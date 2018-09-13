@@ -7,14 +7,14 @@ const footerLinks = [
     colWidth: 4,
     header: "About Us",
     links: [
-      { link: "/our_products", text: "Our Products" },
-      { link: "/our_retail_stores", text: "Our Retail Stores" }
+      { link: "/hsh/our_products", text: "Our Products" },
+      { link: "/hsh/our_retail_stores", text: "Our Retail Stores" }
     ]
   },
   {
     colWidth: 5,
     header: "Services",
-    links: [{ link: "/services", text: "Our Services" }]
+    links: [{ link: "/hsh/services", text: "Our Services" }]
   }
 ];
 
@@ -37,8 +37,8 @@ const Footer = () => {
                   <Header as="h4" content={footerLink.header} />
                   {footerLink.links.map(link => (
                     <List>
-                      <List.Item as="a">
-                        <Link to={link.link}>{link.text}</Link>
+                      <List.Item as={Link} to={link.link}>
+                        {link.text}
                       </List.Item>
                     </List>
                   ))}
