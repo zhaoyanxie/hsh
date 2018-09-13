@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
-import { Icon } from "semantic-ui-react";
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ export class MapContainer extends Component {
           zoom={zoom}
           center={{ lat: mapCenter.lat, lng: mapCenter.lng }}
           onReady={onMapLoaded}
-          style={{ width: "50%", height: "60vh" }}
+          style={{ height: "70vh", maxWidth: "700px" }}
         >
           <Marker
             position={{
