@@ -33,8 +33,8 @@ export default class DesktopMenu extends Component {
           <Menu.Item
             header
             as={Link}
-            to="/"
-            name="store"
+            to="/hsh"
+            name="homepage"
             active={activeItem === "store"}
             onClick={this.handleItemClick}
           >
@@ -45,7 +45,7 @@ export default class DesktopMenu extends Component {
           <Menu.Menu position="right">
             <Menu.Item
               as={Link}
-              to="/our_story"
+              to="/hsh/our_story"
               name="our_story"
               active={activeItem === "our_story"}
               onClick={this.handleItemClick}
@@ -56,7 +56,7 @@ export default class DesktopMenu extends Component {
 
             <Menu.Item
               as={Link}
-              to="/our_stores"
+              to="/hsh/our_stores"
               name="stores"
               active={activeItem === "stores"}
               onClick={this.handleItemClick}
@@ -66,7 +66,7 @@ export default class DesktopMenu extends Component {
             </Menu.Item>
             <Menu.Item
               as={Link}
-              to="/contact_us"
+              to="/hsh/contact_us"
               name="contact"
               active={activeItem === "contact"}
               onClick={this.handleItemClick}
