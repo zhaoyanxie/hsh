@@ -25,9 +25,9 @@ export default class SimpleSlider extends Component {
       <Container text>
         <Title />
         <Slider {...settings}>
-          {imageLinks.map(link => {
+          {imageLinks.map((link, index) => {
             return (
-              <div>
+              <div key={index}>
                 <Image src={link} />
               </div>
             );
