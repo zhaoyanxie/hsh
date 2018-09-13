@@ -4,12 +4,8 @@ import { Icon } from "semantic-ui-react";
 const Title = () => {
   return (
     <div>
-      <h1>
-        Kitchen
-        <Icon name="plus" color="red" style={{ margin: 0 }} />
-        Ware
-      </h1>
-      <h2>Insert sub heading</h2>
+      <h1>HSH - Kitchenware Distributor</h1>
+      <h2>Get an RFQ from us!</h2>
     </div>
   );
 };

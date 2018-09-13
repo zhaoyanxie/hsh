@@ -1,13 +1,13 @@
 import React from "react";
 import { Image } from "semantic-ui-react";
 
-import kitchenPlusWareLogo from "../../images/kitchenpluswarelogo.png";
+import logo from "../../images/hsh_logo.png";
 
 const Logo = () => {
   return (
     <Image
       size="mini"
-      src={kitchenPlusWareLogo}
+      src={logo}
       style={{ marginRight: "1.5em" }}
       alt="Kichen+Ware"
     />

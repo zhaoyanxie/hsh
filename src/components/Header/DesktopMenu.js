@@ -39,7 +39,7 @@ export default class DesktopMenu extends Component {
             onClick={this.handleItemClick}
           >
             <Logo />
-            Kitchen+Ware
+            HSH Kitchenware
           </Menu.Item>
 
           <Menu.Menu position="right">
