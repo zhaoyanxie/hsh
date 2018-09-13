@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HomePage from "../pages/homepage";
-import OurStory from "../pages/ourstory";
+import OurProducts from "../pages/ourproducts";
 import OurStores from "../pages/ourstores";
 
 class App extends PureComponent {
@@ -31,7 +31,7 @@ class App extends PureComponent {
             </Headroom>
           </header>
           <Switch>
-            <Route path="/hsh/our_story" component={OurStory} />
+            <Route path="/hsh/our_products" component={OurProducts} />
             <Route path="/hsh/our_stores" component={OurStores} />
             <Route exact path="/hsh" component={HomePage} />
           </Switch>

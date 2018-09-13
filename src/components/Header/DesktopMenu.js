@@ -45,13 +45,13 @@ export default class DesktopMenu extends Component {
           <Menu.Menu position="right">
             <Menu.Item
               as={Link}
-              to="/hsh/our_story"
-              name="our_story"
-              active={activeItem === "our_story"}
+              to="/hsh/our_products"
+              name="our_products"
+              active={activeItem === "our_products"}
               onClick={this.handleItemClick}
             >
               <Icon name="group" />
-              Our Story
+              Our Products
             </Menu.Item>
 
             <Menu.Item
