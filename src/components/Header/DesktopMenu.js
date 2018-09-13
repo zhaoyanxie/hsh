@@ -2,40 +2,45 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Menu, Icon } from "semantic-ui-react";
 import Logo from "./Logo";
+import {
+  HOMEPAGE,
+  OUR_PRODUCTS,
+  OUR_STORES,
+  CONTACT
+} from "../../pages/endpoints";
 
 export default class DesktopMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // activeItem: this.props.location.pathname
-      activeItem: "store"
+      activeItem: ""
     };
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
-  // componentWillReceiveProps = nextProps => {
-  //   const nextPathname = nextProps.location.pathname;
-  //   const currentPathname = this.props.location.pathname;
-
-  //   if (nextPathname !== currentPathname) {
-  //     this.setState({
-  //       activeItem: nextPathname
-  //     });
-  //   }
-  // };
+  componentWillReceiveProps(nextProps) {
+    const nextLocation = nextProps.currentLocation;
+    const currentLocation = this.props.currentLocation;
+    if (nextLocation !== currentLocation) {
+      this.setState({
+        activeItem: nextLocation
+      });
+    }
+  }
 
   render() {
     const { activeItem } = this.state;
+
     return (
       <Menu borderless pointing>
         <Container text>
           <Menu.Item
             header
             as={Link}
-            to="/hsh"
-            name="homepage"
-            active={activeItem === "store"}
+            to={HOMEPAGE}
+            name={HOMEPAGE}
+            active={activeItem === HOMEPAGE}
             onClick={this.handleItemClick}
           >
             <Logo />
@@ -45,9 +50,9 @@ export default class DesktopMenu extends Component {
           <Menu.Menu position="right">
             <Menu.Item
               as={Link}
-              to="/hsh/our_products"
-              name="our_products"
-              active={activeItem === "our_products"}
+              to={OUR_PRODUCTS}
+              name={OUR_PRODUCTS}
+              active={activeItem === OUR_PRODUCTS}
               onClick={this.handleItemClick}
             >
               <Icon name="group" />
@@ -56,9 +61,9 @@ export default class DesktopMenu extends Component {
 
             <Menu.Item
               as={Link}
-              to="/hsh/our_stores"
-              name="stores"
-              active={activeItem === "stores"}
+              to={OUR_STORES}
+              name={OUR_STORES}
+              active={activeItem === OUR_STORES}
               onClick={this.handleItemClick}
             >
               <Icon name="map marker alternate" />
@@ -66,9 +71,9 @@ export default class DesktopMenu extends Component {
             </Menu.Item>
             <Menu.Item
               as={Link}
-              to="/hsh/contact_us"
-              name="contact"
-              active={activeItem === "contact"}
+              to={CONTACT}
+              name={CONTACT}
+              active={activeItem === CONTACT}
               onClick={this.handleItemClick}
             >
               <Icon name="mail" /> Contact Us

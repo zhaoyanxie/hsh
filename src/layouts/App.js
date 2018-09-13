@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import HomePage from "../pages/homepage";
 import OurProducts from "../pages/ourproducts";
 import OurStores from "../pages/ourstores";
+import { HOMEPAGE, OUR_PRODUCTS, OUR_STORES } from "../pages/endpoints";
 
 class App extends PureComponent {
   constructor() {
@@ -15,9 +16,14 @@ class App extends PureComponent {
     };
   }
 
+  updateLocation = loc => {
+    this.setState({
+      currentLocation: loc
+    });
+  };
+
   render() {
     const { currentLocation } = this.state;
-    console.log(currentLocation);
     return (
       <BrowserRouter>
         <div>
@@ -27,13 +33,18 @@ class App extends PureComponent {
               downTolerance={10}
               style={{ zIndex: "20", height: "6.5em" }}
             >
-              <Header />
+              <Header currentLocation={currentLocation} />
             </Headroom>
           </header>
           <Switch>
-            <Route path="/hsh/our_products" component={OurProducts} />
-            <Route path="/hsh/our_stores" component={OurStores} />
-            <Route exact path="/hsh" component={HomePage} />
+            <Route
+              path={OUR_PRODUCTS}
+              component={props => (
+                <OurProducts {...props} updateLocation={this.updateLocation} />
+              )}
+            />
+            <Route path={OUR_STORES} component={OurStores} />
+            <Route exact path={HOMEPAGE} component={HomePage} />
           </Switch>
           <Footer />
         </div>

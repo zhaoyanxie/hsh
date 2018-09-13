@@ -11,7 +11,7 @@ class Header extends PureComponent {
           <MobileMenu />
         </Responsive>
         <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-          <DesktopMenu />
+          <DesktopMenu {...this.props} />
         </Responsive>
       </Fragment>
     );
