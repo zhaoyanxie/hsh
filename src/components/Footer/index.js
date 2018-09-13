@@ -7,14 +7,18 @@ const footerLinks = [
     colWidth: 4,
     header: "About Us",
     links: [
-      { link: "/hsh/our_products", text: "Our Products" },
-      { link: "/hsh/our_retail_stores", text: "Our Retail Stores" }
+      { id: "link-1", link: "/hsh/our_products", text: "Our Products" },
+      {
+        id: "link-2",
+        link: "/hsh/our_retail_stores",
+        text: "Our Retail Stores"
+      }
     ]
   },
   {
     colWidth: 5,
     header: "Services",
-    links: [{ link: "/hsh/services", text: "Our Services" }]
+    links: [{ id: "link-3", link: "/hsh/services", text: "Our Services" }]
   }
 ];
 
@@ -31,12 +35,12 @@ const Footer = () => {
       <Container text>
         <Grid stackable>
           <Grid.Row width={4}>
-            {footerLinks.map(footerLink => {
+            {footerLinks.map((footerLink, ind) => {
               return (
-                <Grid.Column width={footerLink.colWidth}>
+                <Grid.Column key={ind} width={footerLink.colWidth}>
                   <Header as="h4" content={footerLink.header} />
                   {footerLink.links.map(link => (
-                    <List>
+                    <List key={link.id}>
                       <List.Item as={Link} to={link.link}>
                         {link.text}
                       </List.Item>
