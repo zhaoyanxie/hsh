@@ -7,11 +7,6 @@ import HomePage from "../pages/homepage";
 import OurStory from "../pages/ourstory";
 import OurStores from "../pages/ourstores";
 
-const ENDPOINT = {
-  homepage: "/",
-  ourStores: "/our_stores"
-};
-
 class App extends PureComponent {
   constructor() {
     super();
@@ -36,9 +31,9 @@ class App extends PureComponent {
             </Headroom>
           </header>
           <Switch>
-            <Route path="/hsh" exact component={HomePage} />
-            <Route path="/hsh/our_story" exact component={OurStory} />
-            <Route path="/hsh/our_stores" exact component={OurStores} />
+            <Route path="/hsh/our_story" component={OurStory} />
+            <Route path="/hsh/our_stores" component={OurStores} />
+            <Route exact path="/hsh" component={HomePage} />
           </Switch>
           <Footer />
         </div>
