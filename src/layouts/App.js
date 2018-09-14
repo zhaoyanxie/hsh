@@ -33,6 +33,7 @@ class App extends PureComponent {
   };
 
   render() {
+    console.log(process.env.REACT_APP_HSH_API);
     const { currentLocation } = this.state;
     return (
       <BrowserRouter>
