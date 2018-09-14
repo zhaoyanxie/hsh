@@ -85,8 +85,7 @@ class AddProducts extends Component {
 
   render() {
     const { bError, errorMsg } = this.state;
-    console.log("ggl", process.env.REACT_APP_GOOGLE_API_KEY);
-    console.log("hsh", process.env.REACT_APP_HSH_API);
+
     return (
       <Container text>
         {bError && (
