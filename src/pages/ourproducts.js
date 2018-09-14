@@ -17,7 +17,7 @@ export default class OurProducts extends Component {
   }
 
   getAllProducts = async () => {
-    const response = await fetch(`${API_URL}/our-products`, {
+    const response = await fetch(`${API_URL}our-products`, {
       method: "GET"
     });
 
