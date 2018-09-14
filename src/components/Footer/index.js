@@ -1,16 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Segment, Container, Grid, List, Header } from "semantic-ui-react";
+import {
+  HOMEPAGE,
+  OUR_PRODUCTS,
+  OUR_STORES,
+  CONTACT,
+  RFQ
+} from "../../pages/endpoints";
 
 const footerLinks = [
   {
     colWidth: 4,
     header: "About Us",
     links: [
-      { id: "link-1", link: "/hsh/our_products", text: "Our Products" },
+      { id: "link-1", link: OUR_PRODUCTS, text: "Our Products" },
       {
         id: "link-2",
-        link: "/hsh/our_retail_stores",
+        link: OUR_STORES,
         text: "Our Retail Stores"
       }
     ]
@@ -18,7 +25,7 @@ const footerLinks = [
   {
     colWidth: 5,
     header: "Services",
-    links: [{ id: "link-3", link: "/hsh/rfq", text: "Ask for Quotation" }]
+    links: [{ id: "link-3", link: RFQ, text: "Ask for Quotation" }]
   }
 ];
 

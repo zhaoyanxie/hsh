@@ -5,14 +5,16 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HomePage from "../pages/homepage";
 import OurProducts from "../pages/ourproducts";
+import Rfq from "../pages/rfq";
 import OurStores from "../pages/ourstores";
+import ContactUs from "../pages/contactus";
 import {
   HOMEPAGE,
   OUR_PRODUCTS,
   OUR_STORES,
-  CONTACT
+  CONTACT,
+  RFQ
 } from "../pages/endpoints";
-import ContactUs from "../pages/contactus";
 
 class App extends PureComponent {
   constructor() {
@@ -56,17 +58,22 @@ class App extends PureComponent {
               )}
             />
             <Route
-              exact
-              path={HOMEPAGE}
+              path={CONTACT}
               component={props => (
-                <HomePage {...props} updateLocation={this.updateLocation} />
+                <ContactUs {...props} updateLocation={this.updateLocation} />
+              )}
+            />
+            <Route
+              path={RFQ}
+              component={props => (
+                <Rfq {...props} updateLocation={this.updateLocation} />
               )}
             />
             <Route
               exact
-              path={CONTACT}
+              path={HOMEPAGE}
               component={props => (
-                <ContactUs {...props} updateLocation={this.updateLocation} />
+                <HomePage {...props} updateLocation={this.updateLocation} />
               )}
             />
           </Switch>
