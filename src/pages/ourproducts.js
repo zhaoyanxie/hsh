@@ -34,18 +34,23 @@ export default class OurProducts extends Component {
     return (
       <Container text>
         Our products
-        {allProducts &&
-          allProducts.map((product, i) => {
-            return (
-              <tr key={product._id}>
-                <td>{i + 1}.</td>
-                <td>{product.code}</td>
-                <td>{product.description}</td>
-                <td>{product.minQty}</td>
-                <td>{product.UOM}</td>
-              </tr>
-            );
-          })}
+        <table>
+          <tbody>
+            {allProducts &&
+              allProducts.map((product, i) => {
+                return (
+                  <tr key={product._id}>
+                    <td>{i + 1}.</td>
+                    <td>{product.category}</td>
+                    <td>{product.code}</td>
+                    <td>{product.description}</td>
+                    <td>{product.minQty}</td>
+                    <td>{product.UOM}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
       </Container>
     );
   }
