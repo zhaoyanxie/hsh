@@ -46,7 +46,6 @@ export default class DesktopMenu extends Component {
             <Logo />
             HSH Kitchenware
           </Menu.Item>
-
           <Menu.Menu position="right">
             <Menu.Item
               as={Link}

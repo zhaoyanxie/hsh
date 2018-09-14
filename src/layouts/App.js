@@ -5,12 +5,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HomePage from "../pages/homepage";
 import OurProducts from "../pages/ourproducts";
+import AddProducts from "../pages/addproducts";
 import Rfq from "../pages/rfq";
 import OurStores from "../pages/ourstores";
 import ContactUs from "../pages/contactus";
 import {
   HOMEPAGE,
   OUR_PRODUCTS,
+  OUR_PRODUCTS_ADD,
   OUR_STORES,
   CONTACT,
   RFQ
@@ -45,6 +47,12 @@ class App extends PureComponent {
             </Headroom>
           </header>
           <Switch>
+            <Route
+              path={OUR_PRODUCTS_ADD}
+              component={props => (
+                <AddProducts {...props} updateLocation={this.updateLocation} />
+              )}
+            />
             <Route
               path={OUR_PRODUCTS}
               component={props => (
