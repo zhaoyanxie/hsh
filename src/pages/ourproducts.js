@@ -45,7 +45,6 @@ export default class OurProducts extends Component {
           <Table.Body>
             {allProducts &&
               allProducts.map((product, i) => {
-                console.log(product.imgSrc[0]);
                 return (
                   <Table.Row key={product._id}>
                     <Table.Cell>
