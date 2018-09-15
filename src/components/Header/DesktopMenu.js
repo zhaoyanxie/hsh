@@ -34,7 +34,7 @@ export default class DesktopMenu extends Component {
 
     return (
       <Menu borderless pointing>
-        <Container text>
+        <Container fluid>
           <Menu.Item
             header
             as={Link}
