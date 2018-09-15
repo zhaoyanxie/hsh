@@ -28,7 +28,7 @@ class AddProducts extends Component {
   };
 
   addProduct = async () => {
-    return await fetch(`${API_URL}/our-products/add`, {
+    return await fetch(`${API_URL}our-products/add`, {
       method: "POST",
       headers: {
         Accept: "application/json",
