@@ -11,19 +11,23 @@ class AddProducts extends Component {
       description: "",
       uom: "",
       minQty: "",
+      imgSrc: [],
       bError: false,
       errorMsg: ""
     };
   }
 
+  splitImgSrc = value => value.split(",").map(link => link.trim());
+
   handleChange = (event, field) => {
-    const { category, code, description, uom, minQty } = this.state;
+    const { category, code, description, uom, minQty, imgSrc } = this.state;
     this.setState({
       category: field === "category" ? event.target.value : category,
       code: field === "code" ? event.target.value : code,
       description: field === "description" ? event.target.value : description,
       uom: field === "uom" ? event.target.value : uom,
-      minQty: field === "minQty" ? event.target.value : minQty
+      minQty: field === "minQty" ? event.target.value : minQty,
+      imgSrc: field === "imgSrc" ? this.splitImgSrc(event.target.value) : imgSrc
     });
   };
 
@@ -39,7 +43,8 @@ class AddProducts extends Component {
         code: this.state.code,
         description: this.state.description,
         uom: this.state.uom,
-        minQty: this.state.minQty
+        minQty: this.state.minQty,
+        imgSrc: this.state.imgSrc
       })
     });
   };
@@ -51,12 +56,21 @@ class AddProducts extends Component {
       description: "",
       uom: "",
       minQty: "",
+      imgSrc: "",
       bError: false
     });
   };
   handleSubmit = async event => {
     event.preventDefault();
-    const { category, code, description, uom, minQty, bError } = this.state;
+    const {
+      category,
+      code,
+      description,
+      uom,
+      minQty,
+      imgSrc,
+      bError
+    } = this.state;
 
     if (isNaN(minQty)) {
       this.setState({
@@ -69,7 +83,8 @@ class AddProducts extends Component {
       code.length &&
       description.length &&
       uom.length &&
-      minQty.length
+      minQty.length &&
+      imgSrc.length
     ) {
       const response = await this.addProduct();
       if (response.ok) this.clearState();
@@ -117,6 +132,14 @@ class AddProducts extends Component {
               placeholder="e.g. Ironing Board Cover"
               value={this.state.description}
               onChange={event => this.handleChange(event, "description")}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Product Image Links (Separated by comma)</label>
+            <input
+              placeholder="e.g. https://imgur.com/a/MQ8sc36, https://i.imgur.com/9WtfjjI.jpg"
+              value={this.state.imgSrc}
+              onChange={event => this.handleChange(event, "imgSrc")}
             />
           </Form.Field>
           <Form.Field>

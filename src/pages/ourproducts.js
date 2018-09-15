@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container } from "semantic-ui-react";
+import { Container, Header, Image, Table } from "semantic-ui-react";
 import { API_URL } from "../utils/configVar";
 
 export default class OurProducts extends Component {
@@ -33,24 +33,43 @@ export default class OurProducts extends Component {
     const { allProducts } = this.state;
     return (
       <Container text>
-        Our products
-        <table>
-          <tbody>
+        <Table basic="very" celled collapsing>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Product</Table.HeaderCell>
+              <Table.HeaderCell>Product Category</Table.HeaderCell>
+              <Table.HeaderCell>Min. Order Qty</Table.HeaderCell>
+              <Table.HeaderCell>Unit of Measure</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
             {allProducts &&
               allProducts.map((product, i) => {
+                console.log(product.imgSrc[0]);
                 return (
-                  <tr key={product._id}>
-                    <td>{i + 1}.</td>
-                    <td>{product.category}</td>
-                    <td>{product.code}</td>
-                    <td>{product.description}</td>
-                    <td>{product.minQty}</td>
-                    <td>{product.UOM}</td>
-                  </tr>
+                  <Table.Row key={product._id}>
+                    <Table.Cell>
+                      <Header as="h4" image>
+                        <Image
+                          src={product.imgSrc[0]}
+                          rounded
+                          // size="massive"
+                        />
+                        <Header.Content>
+                          {product.description}
+                          <Header.Subheader>{product.code}</Header.Subheader>
+                        </Header.Content>
+                      </Header>
+                    </Table.Cell>
+                    <Table.Cell>{product.category}</Table.Cell>
+
+                    <Table.Cell>{product.minQty}</Table.Cell>
+                    <Table.Cell>{product.uom}</Table.Cell>
+                  </Table.Row>
                 );
               })}
-          </tbody>
-        </table>
+          </Table.Body>
+        </Table>
       </Container>
     );
   }
