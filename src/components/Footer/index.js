@@ -1,13 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Segment, Container, Grid, List, Header } from "semantic-ui-react";
-import {
-  HOMEPAGE,
-  OUR_PRODUCTS,
-  OUR_STORES,
-  CONTACT,
-  RFQ
-} from "../../pages/endpoints";
+import { OUR_PRODUCTS, OUR_STORES, RFQ } from "../../pages/endpoints";
 
 const footerLinks = [
   {
