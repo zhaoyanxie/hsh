@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Button, Container, Header, Image, Table } from "semantic-ui-react";
 import { API_URL } from "../utils/configVar";
-import { connect } from "react-redux";
 import { ADD_RFQ_ITEM } from "../store/types";
+import { RFQ } from "../pages/endpoints";
 
 class OurProducts extends Component {
   constructor() {
@@ -102,7 +104,12 @@ class OurProducts extends Component {
               ))}
 
               <Table.Cell>
-                <Button color="red" onClick={e => this.handleSubmitToRfq(e)}>
+                <Button
+                  as={Link}
+                  to={RFQ}
+                  color="red"
+                  onClick={e => this.handleSubmitToRfq(e)}
+                >
                   To RFQ Page
                 </Button>
               </Table.Cell>
