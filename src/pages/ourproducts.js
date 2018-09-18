@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Button, Container, Header, Image, Table } from "semantic-ui-react";
 import { API_URL } from "../utils/configVar";
+import { connect } from "react-redux";
+import { ADD_RFQ_ITEM } from "../store/types";
 
-export default class OurProducts extends Component {
+class OurProducts extends Component {
   constructor() {
     super();
     this.state = {
-      allProducts: [],
-      rfqQty: {}
+      allProducts: []
     };
   }
-  // Todo: change to HOC
+
   componentDidMount() {
     const { pathname } = this.props.location;
     this.props.updateLocation(pathname);
@@ -31,21 +32,23 @@ export default class OurProducts extends Component {
   };
 
   handleClick = (event, productId) => {
-    const { rfqQty } = this.state;
-    const rfqQtyKeys = Object.keys(rfqQty);
-    const newRfq = {};
-
-    if (rfqQtyKeys.length < 0 || rfqQtyKeys.indexOf(productId) === -1)
-      newRfq[productId] = 1;
-    else newRfq[productId] = rfqQty[productId] + 1;
-
-    this.setState({
-      rfqQty: { ...rfqQty, ...newRfq }
+    this.props.dispatch({
+      type: ADD_RFQ_ITEM,
+      productId: productId
     });
   };
 
+  handleSubmitToRfq = event => {};
+
+  findRfqItemQty = product_id => {
+    const { rfqItems } = this.props;
+    const itemArray = rfqItems.filter(item => item.productId === product_id);
+    return itemArray.length > 0 ? itemArray[0].qty : 0;
+  };
+
   render() {
-    const { allProducts, rfqQty } = this.state;
+    const { allProducts } = this.state;
+
     return (
       <Container text>
         <Table basic="very" celled collapsing>
@@ -83,7 +86,7 @@ export default class OurProducts extends Component {
                         label={{
                           as: "a",
                           basic: true,
-                          content: rfqQty[product._id]
+                          content: this.findRfqItemQty(product._id)
                         }}
                         labelPosition="right"
                         size="mini"
@@ -93,9 +96,28 @@ export default class OurProducts extends Component {
                   </Table.Row>
                 );
               })}
+            <Table.Row>
+              {Array.from({ length: 4 }).map((element, i) => (
+                <Table.Cell key={i} />
+              ))}
+
+              <Table.Cell>
+                <Button color="red" onClick={e => this.handleSubmitToRfq(e)}>
+                  To RFQ Page
+                </Button>
+              </Table.Cell>
+            </Table.Row>
           </Table.Body>
         </Table>
       </Container>
     );
   }
 }
+
+const mapStateToProps = reduxState => {
+  return {
+    rfqItems: reduxState.rfqItems
+  };
+};
+
+export default connect(mapStateToProps)(OurProducts);

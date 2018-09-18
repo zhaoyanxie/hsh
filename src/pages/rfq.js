@@ -1,7 +1,29 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Container } from "semantic-ui-react";
 
-export default class Rfq extends Component {
+class Rfq extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
-    return <div>from rfq</div>;
+    const rfqItems = this.props.rfq.map((rfqItem, index) => (
+      <li key={index}>{rfqItem}</li>
+    ));
+
+    return (
+      <Container text>
+        from rfq
+        <ul>{rfqItems}</ul>
+      </Container>
+    );
   }
 }
+
+const mapStateToProps = reduxState => {
+  return {
+    rfq: reduxState.rfq
+  };
+};
+
+export default connect(mapStateToProps)(Rfq);
