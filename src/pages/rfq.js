@@ -25,6 +25,7 @@ const months = [
 class Rfq extends Component {
   render() {
     const { rfqItems } = this.props;
+    console.log("here", rfqItems);
     return (
       <Container text>
         <Header as="h1" block>
@@ -100,7 +101,7 @@ class Rfq extends Component {
               rfqItems.map(item => {
                 return (
                   <Grid.Row columns={2}>
-                    <Grid.Column>{item.productId}</Grid.Column>
+                    <Grid.Column>{item.productCode}</Grid.Column>
                     <Grid.Column>{item.qty}</Grid.Column>
                   </Grid.Row>
                 );

@@ -33,11 +33,12 @@ class OurProducts extends Component {
     }
   };
 
-  handleClick = (event, productId, desc, minQty, uom) => {
+  handleClick = (event, productId,  desc, code,minQty, uom) => {
     this.props.dispatch({
       type: ADD_RFQ_ITEM,
       productId: productId,
       description: desc,
+      code: code,
       minQty: minQty,
       uom: uom
     });
@@ -51,6 +52,7 @@ class OurProducts extends Component {
 
   render() {
     const { allProducts } = this.state;
+    console.log(this.props.rfqItems);
     return (
       <Container text>
         <Table basic="very" celled collapsing>
@@ -97,6 +99,7 @@ class OurProducts extends Component {
                             e,
                             product._id,
                             product.description,
+                            product.code,
                             product.minQty,
                             product.uom
                           )
@@ -116,7 +119,7 @@ class OurProducts extends Component {
                   as={Link}
                   to={RFQ}
                   color="red"
-                  onClick={e => this.handleSubmitToRfq(e)}
+                  // onClick={e => this.handleSubmitToRfq(e)}
                 >
                   To RFQ Page
                 </Button>

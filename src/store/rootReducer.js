@@ -23,6 +23,7 @@ const rootReducer = (state = initialState, action) => {
             {
               productId: action.productId,
               description: action.description,
+              code: action.code,
               minQty: action.minQty,
               uom: action.uom,
               qty: 1
