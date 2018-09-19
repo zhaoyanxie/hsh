@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  Container,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Icon,
-  Input
-} from "semantic-ui-react";
+import { Container, Form, Grid, Header, Image, Icon } from "semantic-ui-react";
 
 const today = new Date();
 const todayDate = today.getDate();
@@ -32,12 +24,7 @@ const months = [
 
 class Rfq extends Component {
   render() {
-    const rfqItems = this.props.rfqItems.map((item, index) => (
-      <li key={index}>
-        {item.productId}: {item.qty}
-      </li>
-    ));
-
+    const { rfqItems } = this.props;
     return (
       <Container text>
         <Header as="h1" block>
@@ -104,42 +91,23 @@ class Rfq extends Component {
             </Grid.Row>
 
             <Grid.Row columns={4}>
-              <Grid.Column>
-                <Image src="https://cdn4.iconfinder.com/data/icons/sales-reports/512/price_info-512.png" />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src="https://cdn4.iconfinder.com/data/icons/sales-reports/512/price_info-512.png" />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src="https://cdn4.iconfinder.com/data/icons/sales-reports/512/price_info-512.png" />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src="https://cdn4.iconfinder.com/data/icons/sales-reports/512/price_info-512.png" />
-              </Grid.Column>
+              <Grid.Column>Product Code</Grid.Column>
+              <Grid.Column>Product Description</Grid.Column>
+              <Grid.Column>Unit of Measure</Grid.Column>
+              <Grid.Column>RFQ Qty</Grid.Column>
             </Grid.Row>
-
-            <Grid.Row columns={5}>
-              <Grid.Column>
-                <Image src="https://cdn4.iconfinder.com/data/icons/sales-reports/512/price_info-512.png" />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src="https://cdn4.iconfinder.com/data/icons/sales-reports/512/price_info-512.png" />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src="https://cdn4.iconfinder.com/data/icons/sales-reports/512/price_info-512.png" />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src="https://cdn4.iconfinder.com/data/icons/sales-reports/512/price_info-512.png" />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src="https://cdn4.iconfinder.com/data/icons/sales-reports/512/price_info-512.png" />
-              </Grid.Column>
-            </Grid.Row>
+            {rfqItems &&
+              rfqItems.map(item => {
+                return (
+                  <Grid.Row columns={2}>
+                    <Grid.Column>{item.productId}</Grid.Column>
+                    <Grid.Column>{item.qty}</Grid.Column>
+                  </Grid.Row>
+                );
+              })}
           </Grid>
         </Form>
       </Container>
-
-      // <ul>{rfqItems}</ul>
     );
   }
 }

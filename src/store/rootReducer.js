@@ -20,7 +20,13 @@ const rootReducer = (state = initialState, action) => {
           ...newState,
           rfqItems: [
             ...newState.rfqItems,
-            { productId: action.productId, qty: 1 }
+            {
+              productId: action.productId,
+              description: action.description,
+              minQty: action.minQty,
+              uom: action.uom,
+              qty: 1
+            }
           ]
         };
       } else {
@@ -28,12 +34,12 @@ const rootReducer = (state = initialState, action) => {
         const newRfqItemIndex = state.rfqItems.findIndex(
           item => item.productId === action.productId
         );
-        const newQty = state.rfqItems[newRfqItemIndex].qty + 1;
+        const newQty = newRfqItem[0].qty + 1;
         return {
           ...newState,
           rfqItems: [
             ...newState.rfqItems.slice(0, newRfqItemIndex),
-            { productId: action.productId, qty: newQty },
+            { ...newRfqItem[0], qty: newQty },
             ...newState.rfqItems.slice(newRfqItemIndex + 1)
           ]
         };
