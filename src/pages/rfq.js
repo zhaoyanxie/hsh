@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Container, Form, Grid, Header, Image, Icon } from "semantic-ui-react";
 import QtyCounter from "../components/Body/QtyCounter";
-import { ADD_RFQ_ITEM, REDUCE_RFQ_ITEM, REMOVE_RFQ_ITEM } from "../store/types";
 
 const today = new Date();
 const todayDate = today.getDate();
@@ -25,10 +24,9 @@ const months = [
 ];
 
 class Rfq extends Component {
-  handleUpDown = (event, item, upOrDown) => {
-    console.log(item, upOrDown);
+  handleIncreaseDecrease = (event, item, IncreaseOrDecrease) => {
     this.props.dispatch({
-      type: upOrDown,
+      type: IncreaseOrDecrease,
       productId: item.productId,
       description: item.description,
       code: item.code,
@@ -123,7 +121,7 @@ class Rfq extends Component {
                     <Grid.Column style={{ padding: "0" }}>
                       <QtyCounter
                         item={item}
-                        handleUpDown={this.handleUpDown}
+                        handleIncreaseDecrease={this.handleIncreaseDecrease}
                       />
                     </Grid.Column>
                   </Grid.Row>

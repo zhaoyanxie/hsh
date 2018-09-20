@@ -19,7 +19,9 @@ const QtyCounter = props => {
           left: "15px",
           cursor: "pointer"
         }}
-        onClick={event => props.handleUpDown(event, props.item, ADD_RFQ_ITEM)}
+        onClick={event =>
+          props.handleIncreaseDecrease(event, props.item, ADD_RFQ_ITEM)
+        }
       />
       <Label
         content={props.item.qty}
@@ -46,7 +48,7 @@ const QtyCounter = props => {
           cursor: "pointer"
         }}
         onClick={event =>
-          props.handleUpDown(event, props.item, REDUCE_RFQ_ITEM)
+          props.handleIncreaseDecrease(event, props.item, REDUCE_RFQ_ITEM)
         }
       />
       <Icon
@@ -58,7 +60,7 @@ const QtyCounter = props => {
           cursor: "pointer"
         }}
         onClick={event =>
-          props.handleUpDown(event, props.item, REMOVE_RFQ_ITEM)
+          props.handleIncreaseDecrease(event, props.item, REMOVE_RFQ_ITEM)
         }
       />
     </div>
