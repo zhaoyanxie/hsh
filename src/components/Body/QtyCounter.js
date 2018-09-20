@@ -8,15 +8,17 @@ import {
 
 const QtyCounter = props => {
   return (
-    <div>
+    <div style={{ height: "80px" }}>
       <Icon
         name="angle up"
         size="large"
         style={{
+          width: "30px",
+          height: "20px",
           display: "inline-block",
-          position: "relative",
+          position: "absolute",
           top: "0px",
-          left: "15px",
+          left: "0",
           cursor: "pointer"
         }}
         onClick={event =>
@@ -28,23 +30,27 @@ const QtyCounter = props => {
         size="large"
         style={{
           width: "30px",
+          height: "30px",
+          padding: "10px 0",
+          margin: "0",
           textAlign: "center",
           background: "transparent",
           display: "inline-block",
-          position: "relative",
+          position: "absolute",
           top: "18px",
-          left: "-18px",
-          padding: "0 1px"
+          left: "0"
         }}
       />
       <Icon
         name="angle down"
         size="large"
         style={{
+          width: "30px",
+          height: "20px",
           display: "inline-block",
-          position: "relative",
-          top: "34px",
-          left: "-48px",
+          position: "absolute",
+          top: "50px",
+          left: "0",
           cursor: "pointer"
         }}
         onClick={event =>
@@ -54,9 +60,9 @@ const QtyCounter = props => {
       <Icon
         name="trash alternate outline"
         style={{
-          position: "relative",
-          top: "18px",
-          left: "-50px",
+          position: "absolute",
+          top: "25px",
+          left: "35px",
           cursor: "pointer"
         }}
         onClick={event =>
