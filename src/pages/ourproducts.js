@@ -33,14 +33,14 @@ class OurProducts extends Component {
     }
   };
 
-  handleClick = (event, productId, desc, code, minQty, uom) => {
+  handleClick = (event, product) => {
     this.props.dispatch({
       type: ADD_RFQ_ITEM,
-      productId: productId,
-      description: desc,
-      code: code,
-      minQty: minQty,
-      uom: uom
+      productId: product._id,
+      description: product.description,
+      code: product.code,
+      minQty: product.minQty,
+      uom: product.uom
     });
   };
 
@@ -93,16 +93,7 @@ class OurProducts extends Component {
                         }}
                         labelPosition="right"
                         size="mini"
-                        onClick={e =>
-                          this.handleClick(
-                            e,
-                            product._id,
-                            product.description,
-                            product.code,
-                            product.minQty,
-                            product.uom
-                          )
-                        }
+                        onClick={e => this.handleClick(e, product)}
                       />
                     </Table.Cell>
                   </Table.Row>
