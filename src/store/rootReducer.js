@@ -43,22 +43,21 @@ const changeRfqQty = (newState, action, newRfqItem, newQty) => {
 const rootReducer = (state = initialState, action) => {
   const newState = { ...state };
   const newRfqItem = findRfqItem(state, action);
+  newState.id++;
 
   switch (action.type) {
     case ADD_RFQ_ITEM:
-      newState.id++;
       if (newRfqItem.length === 0) {
-        // if the new rfqItem to be added is not in the current list of rfqItems
         return addFirstRfqItem(newState, action);
       } else {
-        // new rfqItem exists and only its qty is to be increased
         const newQty = newRfqItem[0].qty + 1;
         return changeRfqQty(newState, action, newRfqItem, newQty);
       }
+
     case REDUCE_RFQ_ITEM:
-      newState.id++;
       const newQty = Math.max(newRfqItem[0].qty - 1, 0);
       return changeRfqQty(newState, action, newRfqItem, newQty);
+
     case REMOVE_RFQ_ITEM:
       const rfqItems = state.rfqItems.filter(
         item => item.productId !== action.productId

@@ -9,6 +9,8 @@ import AddProducts from "../pages/addproducts";
 import Rfq from "../pages/rfq";
 import OurStores from "../pages/ourstores";
 import ContactUs from "../pages/contactus";
+import { API_URL } from "../utils/configVar";
+
 import {
   HOMEPAGE,
   OUR_PRODUCTS,
@@ -22,7 +24,8 @@ class App extends PureComponent {
   constructor() {
     super();
     this.state = {
-      currentLocation: ""
+      currentLocation: "",
+      allProducts: []
     };
   }
 
@@ -30,6 +33,23 @@ class App extends PureComponent {
     this.setState({
       currentLocation: loc
     });
+  };
+
+  getAllProducts = async () => {
+    const response = await fetch(`${API_URL}our-products`, {
+      method: "GET"
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      this.setState({
+        allProducts: data
+      });
+    }
+  };
+
+  componentDidMount = () => {
+    this.getAllProducts();
   };
 
   render() {
@@ -56,7 +76,11 @@ class App extends PureComponent {
             <Route
               path={OUR_PRODUCTS}
               component={props => (
-                <OurProducts {...props} updateLocation={this.updateLocation} />
+                <OurProducts
+                  {...props}
+                  updateLocation={this.updateLocation}
+                  allProducts={this.state.allProducts}
+                />
               )}
             />
             <Route

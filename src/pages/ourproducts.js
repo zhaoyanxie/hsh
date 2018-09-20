@@ -2,36 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, Header, Image, Table } from "semantic-ui-react";
-import { API_URL } from "../utils/configVar";
 import { ADD_RFQ_ITEM } from "../store/types";
 import { RFQ } from "../pages/endpoints";
 
 class OurProducts extends Component {
-  constructor() {
-    super();
-    this.state = {
-      allProducts: []
-    };
-  }
-
   componentDidMount() {
     const { pathname } = this.props.location;
     this.props.updateLocation(pathname);
-    this.getAllProducts();
   }
-
-  getAllProducts = async () => {
-    const response = await fetch(`${API_URL}our-products`, {
-      method: "GET"
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      this.setState({
-        allProducts: data
-      });
-    }
-  };
 
   handleClick = (event, product) => {
     this.props.dispatch({
@@ -51,7 +29,8 @@ class OurProducts extends Component {
   };
 
   render() {
-    const { allProducts } = this.state;
+    const { allProducts } = this.props;
+    console.log("here", allProducts);
     return (
       <Container text>
         <Table basic="very" celled collapsing>
