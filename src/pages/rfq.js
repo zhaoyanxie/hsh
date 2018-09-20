@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Container, Form, Grid, Header, Image, Icon } from "semantic-ui-react";
+import QtyCounter from "../components/Body/QtyCounter";
+import { ADD_RFQ_ITEM, REDUCE_RFQ_ITEM, REMOVE_RFQ_ITEM } from "../store/types";
 
 const today = new Date();
 const todayDate = today.getDate();
@@ -23,9 +25,20 @@ const months = [
 ];
 
 class Rfq extends Component {
+  handleUpDown = (event, item, upOrDown) => {
+    console.log(item, upOrDown);
+    this.props.dispatch({
+      type: upOrDown,
+      productId: item.productId,
+      description: item.description,
+      code: item.code,
+      minQty: item.minQty,
+      uom: item.uom
+    });
+  };
+
   render() {
     const { rfqItems } = this.props;
-    console.log("here", rfqItems);
     return (
       <Container text>
         <Header as="h1" block>
@@ -100,9 +113,19 @@ class Rfq extends Component {
             {rfqItems &&
               rfqItems.map(item => {
                 return (
-                  <Grid.Row columns={2}>
-                    <Grid.Column>{item.productCode}</Grid.Column>
-                    <Grid.Column>{item.qty}</Grid.Column>
+                  <Grid.Row
+                    columns={Object.keys(item).length - 2}
+                    key={item.productId}
+                  >
+                    <Grid.Column>{item.code}</Grid.Column>
+                    <Grid.Column>{item.description}</Grid.Column>
+                    <Grid.Column>{item.uom}</Grid.Column>
+                    <Grid.Column style={{ padding: "0" }}>
+                      <QtyCounter
+                        item={item}
+                        handleUpDown={this.handleUpDown}
+                      />
+                    </Grid.Column>
                   </Grid.Row>
                 );
               })}
