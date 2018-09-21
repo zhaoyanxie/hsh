@@ -98,7 +98,11 @@ class App extends PureComponent {
             <Route
               path={RFQ}
               component={props => (
-                <Rfq {...props} updateLocation={this.updateLocation} />
+                <Rfq
+                  {...props}
+                  updateLocation={this.updateLocation}
+                  allProducts={this.state.allProducts}
+                />
               )}
             />
             <Route

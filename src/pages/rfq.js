@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Container, Form, Grid, Header, Image, Icon } from "semantic-ui-react";
 import QtyCounter from "../components/Body/QtyCounter";
+import ProductSearch from "../components/Body/ProductSearch";
 
 const today = new Date();
 const todayDate = today.getDate();
@@ -37,8 +38,10 @@ class Rfq extends Component {
 
   render() {
     const { rfqItems } = this.props;
+
     return (
       <Container text>
+        <ProductSearch allProducts={this.props.allProducts} />
         <Header as="h1" block>
           <Image
             size="big"
