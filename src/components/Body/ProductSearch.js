@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { Search, Grid } from "semantic-ui-react";
+import { Search, Grid, Header } from "semantic-ui-react";
 import { API_URL } from "../../utils/configVar";
 
 export default class ProductSearch extends Component {
@@ -99,7 +99,10 @@ export default class ProductSearch extends Component {
 
     return (
       <Grid>
-        <Grid.Column width={8}>
+        <Grid.Column>
+          <Header as="H3" style={{ position: "fixed", left: "40px" }}>
+            Add a product to the RFQ:
+          </Header>
           <Search
             category
             loading={isLoading}
@@ -110,6 +113,7 @@ export default class ProductSearch extends Component {
             results={results}
             value={value}
             {...this.props}
+            style={{ position: "fixed", top: "110px" }}
           />
         </Grid.Column>
       </Grid>
