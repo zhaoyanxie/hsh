@@ -30,7 +30,6 @@ class OurProducts extends Component {
 
   render() {
     const { allProducts } = this.props;
-    console.log("here", allProducts);
     return (
       <Container text>
         <Table basic="very" celled collapsing>
@@ -46,20 +45,23 @@ class OurProducts extends Component {
           <Table.Body>
             {allProducts &&
               allProducts.map((product, i) => {
+                console.log(allProducts);
                 return (
                   <Table.Row key={product._id}>
                     <Table.Cell>
                       <Header as="h4" image>
-                        <Image src={product.imgSrc[0]} rounded />
+                        <Image src={product.details.imgSrc[0]} rounded />
                         <Header.Content>
-                          {product.description}
-                          <Header.Subheader>{product.code}</Header.Subheader>
+                          {product.details.description}
+                          <Header.Subheader>
+                            {product.details.code}
+                          </Header.Subheader>
                         </Header.Content>
                       </Header>
                     </Table.Cell>
                     <Table.Cell>{product.category}</Table.Cell>
-                    <Table.Cell>{product.minQty}</Table.Cell>
-                    <Table.Cell>{product.uom}</Table.Cell>
+                    <Table.Cell>{product.details.minQty}</Table.Cell>
+                    <Table.Cell>{product.details.uom}</Table.Cell>
                     <Table.Cell>
                       <Button
                         color="red"

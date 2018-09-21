@@ -40,11 +40,13 @@ class AddProducts extends Component {
       },
       body: JSON.stringify({
         category: this.state.category,
-        code: this.state.code,
-        description: this.state.description,
-        uom: this.state.uom,
-        minQty: this.state.minQty,
-        imgSrc: this.state.imgSrc
+        details: {
+          code: this.state.code,
+          description: this.state.description,
+          uom: this.state.uom,
+          minQty: this.state.minQty,
+          imgSrc: this.state.imgSrc
+        }
       })
     });
   };
