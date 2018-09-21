@@ -15,10 +15,10 @@ class OurProducts extends Component {
     this.props.dispatch({
       type: ADD_RFQ_ITEM,
       productId: product._id,
-      description: product.description,
-      code: product.code,
-      minQty: product.minQty,
-      uom: product.uom
+      description: product.details.description,
+      code: product.details.code,
+      minQty: product.details.minQty,
+      uom: product.details.uom
     });
   };
 
@@ -45,7 +45,7 @@ class OurProducts extends Component {
           <Table.Body>
             {allProducts &&
               allProducts.map((product, i) => {
-                console.log(allProducts);
+                // console.log(allProducts);
                 return (
                   <Table.Row key={product._id}>
                     <Table.Cell>
