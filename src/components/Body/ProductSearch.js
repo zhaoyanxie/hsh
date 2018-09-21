@@ -9,7 +9,7 @@ export default class ProductSearch extends Component {
     this.state = {
       isLoading: false,
       results: [],
-      value: "",
+      searchInputValue: "",
       productSearchSource: {}
     };
   }
@@ -43,7 +43,10 @@ export default class ProductSearch extends Component {
         return {
           title: product.details.description,
           description: product.details.code,
-          image: product.details.imgSrc[0]
+          image: product.details.imgSrc[0],
+          _id: product._id,
+          minQty: product.details.minQty,
+          uom: product.details.uom
         };
       });
       productSearchSource[category] = {
@@ -62,18 +65,20 @@ export default class ProductSearch extends Component {
   }
 
   resetComponent = () =>
-    this.setState({ isLoading: false, results: [], value: "" });
+    this.setState({ isLoading: false, results: [], searchInputValue: "" });
 
-  handleResultSelect = (e, { result }) =>
-    this.setState({ value: result.title });
+  handleResultSelect = (e, { result }) => {
+    this.props.handleSelect(result);
+    this.setState({ searchInputValue: result.title });
+  };
 
   handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value });
+    this.setState({ isLoading: true, searchInputValue: value });
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent();
+      if (this.state.searchInputValue.length < 1) return this.resetComponent();
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), "i");
+      const re = new RegExp(_.escapeRegExp(this.state.searchInputValue), "i");
       const isMatch = result => re.test(result.title);
 
       const filteredResults = _.reduce(
@@ -95,12 +100,15 @@ export default class ProductSearch extends Component {
   };
 
   render() {
-    const { isLoading, value, results } = this.state;
+    const { isLoading, searchInputValue, results } = this.state;
 
     return (
       <Grid>
         <Grid.Column>
-          <Header as="H3" style={{ position: "fixed", left: "40px" }}>
+          <Header
+            as="H3"
+            style={{ position: "fixed", left: "3.8em", top: "5em" }}
+          >
             Add a product to the RFQ:
           </Header>
           <Search
@@ -111,9 +119,9 @@ export default class ProductSearch extends Component {
             })}
             onResultSelect={this.handleResultSelect}
             results={results}
-            value={value}
+            value={searchInputValue}
             {...this.props}
-            style={{ position: "fixed", top: "110px" }}
+            style={{ position: "fixed", top: "6.5em", left: "2.5em" }}
           />
         </Grid.Column>
       </Grid>

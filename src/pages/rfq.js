@@ -11,6 +11,7 @@ import {
 } from "semantic-ui-react";
 import QtyCounter from "../components/Body/QtyCounter";
 import ProductSearch from "../components/Body/ProductSearch";
+import { ADD_RFQ_ITEM } from "../store/types";
 
 const today = new Date();
 const todayDate = today.getDate();
@@ -44,6 +45,17 @@ class Rfq extends Component {
     });
   };
 
+  handleSearchProduct = result => {
+    this.props.dispatch({
+      type: ADD_RFQ_ITEM,
+      productId: result._id,
+      description: result.title,
+      code: result.description,
+      minQty: result.minQty,
+      uom: result.uom
+    });
+    console.log(result);
+  };
   render() {
     const { rfqItems } = this.props;
 
@@ -149,7 +161,10 @@ class Rfq extends Component {
             </Container>
 
             <Rail close size="big" position="left">
-              <ProductSearch allProducts={this.props.allProducts} />
+              <ProductSearch
+                allProducts={this.props.allProducts}
+                handleSelect={this.handleSearchProduct}
+              />
             </Rail>
           </Grid.Column>
         </Grid>
