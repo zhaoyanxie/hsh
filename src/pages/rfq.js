@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
+  Button,
   Container,
   Form,
   Grid,
@@ -12,6 +13,7 @@ import {
 import QtyCounter from "../components/Body/QtyCounter";
 import ProductSearch from "../components/Body/ProductSearch";
 import { ADD_RFQ_ITEM } from "../store/types";
+import { API_URL } from "../utils/configVar";
 
 const today = new Date();
 const todayDate = today.getDate();
@@ -34,6 +36,60 @@ const months = [
 ];
 
 class Rfq extends Component {
+  constructor() {
+    super();
+    this.state = {
+      value: {
+        companyName: "",
+        companyAddress: "",
+        contactName: "",
+        contactNumber: "",
+        email: "",
+        dueDate: ""
+      }
+    };
+  }
+
+  handleChange = (event, field) => {
+    this.setState({
+      value: {
+        ...this.state.value,
+        [field]: event.target.value
+      }
+    });
+  };
+
+  handleSubmit = async () => {
+    console.log("submitted");
+    const {
+      companyName,
+      companyAddress,
+      contactName,
+      contactNumber,
+      email,
+      dueDate
+    } = this.state.value;
+    const { rfqItems } = this.props;
+
+    return await fetch(`${API_URL}rfq/add`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        rfqNo: Date.now(),
+        companyName,
+        companyAddress,
+        contactName,
+        contactNumber,
+        email,
+        dueDate,
+        rfqItems
+      })
+    });
+  };
+
   handleIncreaseDecrease = (event, item, IncreaseOrDecrease) => {
     this.props.dispatch({
       type: IncreaseOrDecrease,
@@ -54,16 +110,24 @@ class Rfq extends Component {
       minQty: result.minQty,
       uom: result.uom
     });
-    console.log(result);
   };
+
   render() {
     const { rfqItems } = this.props;
+    const {
+      companyName,
+      companyAddress,
+      contactName,
+      contactNumber,
+      email,
+      dueDate
+    } = this.state.value;
 
     return (
       <div>
         <Grid centered columns={2}>
           <Grid.Column>
-            <Container text>
+            <Container text id="divToPrint">
               <Header as="h1" block>
                 <Image
                   size="big"
@@ -72,7 +136,7 @@ class Rfq extends Component {
                 Request for Quotation (RFQ)
               </Header>
               <hr />
-              <Form>
+              <Form onSubmit={this.handleSubmit}>
                 <Grid celled>
                   <Grid.Row columns={2}>
                     <Grid.Column width={10}>
@@ -83,27 +147,47 @@ class Rfq extends Component {
                           <Icon name="building" />
                           Company Name
                         </label>
-                        <Form.Input placeholder="Company name" />
+                        <Form.Input
+                          placeholder="Company name"
+                          value={companyName}
+                          onChange={e => this.handleChange(e, "companyName")}
+                        />
                         <label>
                           <Icon name="address book" />
                           Company Address
                         </label>
-                        <Form.Input placeholder="Company Address" />
+                        <Form.Input
+                          placeholder="Company Address"
+                          value={companyAddress}
+                          onChange={e => this.handleChange(e, "companyAddress")}
+                        />
                         <label>
                           <Icon name="user" />
                           Contact Name
                         </label>
-                        <Form.Input placeholder="Contact Name" />
+                        <Form.Input
+                          placeholder="Contact Name"
+                          onChange={contactName}
+                          onChange={e => this.handleChange(e, "contactName")}
+                        />
                         <label>
                           <Icon name="phone" />
-                          Telephone Number
+                          Contact Number
                         </label>
-                        <Form.Input placeholder="Telephone Number" />
+                        <Form.Input
+                          placeholder="Contact Number"
+                          onChange={contactNumber}
+                          onChange={e => this.handleChange(e, "contactNumber")}
+                        />
                         <label>
                           <Icon name="mail" />
                           Email Address
                         </label>
-                        <Form.Input placeholder="Email Address" />
+                        <Form.Input
+                          placeholder="Email Address"
+                          onChange={email}
+                          onChange={e => this.handleChange(e, "email")}
+                        />
                       </Form.Field>
                     </Grid.Column>
 
@@ -117,7 +201,7 @@ class Rfq extends Component {
                           Date of RFQ:
                         </label>
                         <span>
-                          {todayDate} - {months[todayMonth]} - {todayYear}
+                          {todayDate} - {months[todayMonth + 1]} - {todayYear}
                         </span>
                         <br />
                         <br />
@@ -125,7 +209,11 @@ class Rfq extends Component {
 
                         <label>RFQ Due Date:</label>
                       </Form.Field>
-                      <Form.Input placeholder="RFQ Due Date" />
+                      <Form.Input
+                        placeholder="RFQ Due Date"
+                        onChange={dueDate}
+                        onChange={e => this.handleChange(e, "dueDate")}
+                      />
                     </Grid.Column>
                   </Grid.Row>
 
@@ -157,6 +245,13 @@ class Rfq extends Component {
                       );
                     })}
                 </Grid>
+                <Button
+                  color="red"
+                  type="submit"
+                  content="Submit"
+                  icon="right arrow"
+                  labelPosition="right"
+                />
               </Form>
             </Container>
 
@@ -175,7 +270,8 @@ class Rfq extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    rfqItems: reduxState.rfqItems
+    rfqItems: reduxState.rfqItems,
+    requester: reduxState.requester
   };
 };
 
