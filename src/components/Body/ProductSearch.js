@@ -106,7 +106,7 @@ export default class ProductSearch extends Component {
       <Grid>
         <Grid.Column>
           <Header
-            as="H3"
+            as="h3"
             style={{ position: "fixed", left: "3.8em", top: "5em" }}
           >
             Add a product to the RFQ:
