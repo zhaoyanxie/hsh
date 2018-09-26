@@ -45,7 +45,8 @@ class Rfq extends Component {
         contactName: "",
         contactNumber: "",
         email: "",
-        dueDate: ""
+        dueDate: "",
+        rfqDate: `${todayDate} - ${months[todayMonth + 1]} - ${todayYear}`
       }
     };
   }
@@ -67,7 +68,8 @@ class Rfq extends Component {
       contactName,
       contactNumber,
       email,
-      dueDate
+      dueDate,
+      rfqDate
     } = this.state.value;
     const { rfqItems } = this.props;
 
@@ -85,7 +87,8 @@ class Rfq extends Component {
         contactNumber,
         email,
         dueDate,
-        rfqItems
+        rfqItems,
+        rfqDate
       })
     });
   };
@@ -120,14 +123,15 @@ class Rfq extends Component {
       contactName,
       contactNumber,
       email,
-      dueDate
+      dueDate,
+      rfqDate
     } = this.state.value;
 
     return (
       <div>
         <Grid centered columns={2}>
           <Grid.Column>
-            <Container text id="divToPrint">
+            <Container text>
               <Header as="h1" block>
                 <Image
                   size="big"
@@ -200,9 +204,7 @@ class Rfq extends Component {
                         >
                           Date of RFQ:
                         </label>
-                        <span>
-                          {todayDate} - {months[todayMonth + 1]} - {todayYear}
-                        </span>
+                        <span>{rfqDate}</span>
                         <br />
                         <br />
                         <br />

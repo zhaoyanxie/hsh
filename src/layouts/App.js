@@ -17,8 +17,10 @@ import {
   OUR_PRODUCTS_ADD,
   OUR_STORES,
   CONTACT,
-  RFQ
+  RFQ,
+  RFQ_ALL
 } from "../pages/endpoints";
+import RfqAll from "../pages/rfqall";
 
 class App extends PureComponent {
   constructor() {
@@ -93,6 +95,12 @@ class App extends PureComponent {
               path={CONTACT}
               component={props => (
                 <ContactUs {...props} updateLocation={this.updateLocation} />
+              )}
+            />
+            <Route
+              path={RFQ_ALL}
+              component={props => (
+                <RfqAll {...props} updateLocation={this.updateLocation} />
               )}
             />
             <Route
