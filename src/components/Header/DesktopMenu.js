@@ -6,7 +6,8 @@ import {
   HOMEPAGE,
   OUR_PRODUCTS,
   OUR_STORES,
-  CONTACT
+  CONTACT,
+  SIGN_IN
 } from "../../pages/endpoints";
 
 export default class DesktopMenu extends Component {
@@ -76,6 +77,15 @@ export default class DesktopMenu extends Component {
               onClick={this.handleItemClick}
             >
               <Icon name="mail" /> Contact Us
+            </Menu.Item>
+            <Menu.Item
+              as={Link}
+              to={SIGN_IN}
+              name={SIGN_IN}
+              active={activeItem === SIGN_IN}
+              onClick={this.handleItemClick}
+            >
+              <Icon name="sign-in" /> Sign In
             </Menu.Item>
           </Menu.Menu>
         </Container>
