@@ -18,9 +18,13 @@ import {
   OUR_STORES,
   CONTACT,
   RFQ,
-  RFQ_ALL
+  RFQ_ALL,
+  SIGN_IN,
+  ADMIN
 } from "../pages/endpoints";
 import RfqAll from "../pages/rfqall";
+import SignIn from "../pages/signin";
+import Admin from "../pages/admin";
 
 class App extends PureComponent {
   constructor() {
@@ -111,6 +115,18 @@ class App extends PureComponent {
                   updateLocation={this.updateLocation}
                   allProducts={this.state.allProducts}
                 />
+              )}
+            />
+            <Route
+              path={SIGN_IN}
+              component={props => (
+                <SignIn {...props} updateLocation={this.updateLocation} />
+              )}
+            />
+            <Route
+              path={ADMIN}
+              component={props => (
+                <Admin {...props} updateLocation={this.updateLocation} />
               )}
             />
             <Route

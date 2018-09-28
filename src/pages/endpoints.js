@@ -5,3 +5,5 @@ export const OUR_STORES = "/our_stores";
 export const CONTACT = "/contact_us";
 export const RFQ = "/rfq";
 export const RFQ_ALL = "/rfq/all";
+export const SIGN_IN = "/signin";
+export const ADMIN = "/admin";
