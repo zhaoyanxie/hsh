@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import CredentialsForm from "../components/Body/CredentialsForm";
 import { API_URL } from "../utils/configVar";
-import { saveLoginStatus } from "../utils/userManager";
 
 export default class SignIn extends Component {
   constructor() {
@@ -47,7 +46,6 @@ export default class SignIn extends Component {
     const data = await response.json();
 
     if (response.ok) {
-      saveLoginStatus();
       this.props.history.push({
         pathname: `/admin`
       });
