@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { API_URL } from "../utils/configVar";
+import Unauthorised from "./unauthorised";
 
 export default class Admin extends Component {
   constructor() {
@@ -34,7 +35,7 @@ export default class Admin extends Component {
   render() {
     const { isAdminLoggedIn } = this.state;
     return (
-      <div>{isAdminLoggedIn ? <div>from Admin</div> : <div>rejected</div>}</div>
+      <div>{isAdminLoggedIn ? <div>from Admin</div> : <Unauthorised />}</div>
     );
   }
 }
