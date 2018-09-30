@@ -1,9 +1,9 @@
 export const HOMEPAGE = "/";
 export const OUR_PRODUCTS = "/our_products";
-export const OUR_PRODUCTS_ADD = "/our_products/add";
 export const OUR_STORES = "/our_stores";
 export const CONTACT = "/contact_us";
 export const RFQ = "/rfq";
-export const RFQ_ALL = "/rfq/all";
 export const SIGN_IN = "/signin";
 export const ADMIN = "/admin";
+export const RFQ_ALL = "/admin/all_rfq";
+export const OUR_PRODUCTS_ADD = "/admin/add_product";

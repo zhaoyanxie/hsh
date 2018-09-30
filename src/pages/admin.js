@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { API_URL } from "../utils/configVar";
+import { Container, Header, List } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+
+import { OUR_PRODUCTS_ADD, RFQ_ALL } from "../pages/endpoints";
+import { fetchAdminStatus } from "../utils/fetchAdminStatus";
 import Unauthorised from "./unauthorised";
 
 export default class Admin extends Component {
@@ -10,32 +14,33 @@ export default class Admin extends Component {
     };
   }
 
-  fetchAdminRoute = async () => {
-    const response = await fetch(`${API_URL}admin`, {
-      method: "GET",
-      credentials: "include"
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      this.setState({
-        isAdminLoggedIn: true
-      });
-    } else {
-      console.log("response", response.status);
-      this.setState({ isAdminLoggedIn: false });
-    }
-  };
-
   async componentDidMount() {
-    this.fetchAdminRoute();
+    (await fetchAdminStatus())
+      ? this.setState({ isAdminLoggedIn: true })
+      : this.setState({ isAdminLoggedIn: false });
   }
 
   render() {
     const { isAdminLoggedIn } = this.state;
     return (
-      <div>{isAdminLoggedIn ? <div>from Admin</div> : <Unauthorised />}</div>
+      <div>
+        {isAdminLoggedIn ? (
+          <Container text>
+            <List>
+              <Header>PRODUCTS</Header>
+              <List.Item as={Link} to={OUR_PRODUCTS_ADD}>
+                Add Products
+              </List.Item>
+              <Header>RFQs</Header>
+              <List.Item as={Link} to={RFQ_ALL}>
+                View All RFQ
+              </List.Item>
+            </List>
+          </Container>
+        ) : (
+          <Unauthorised />
+        )}
+      </div>
     );
   }
 }

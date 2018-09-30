@@ -7,11 +7,13 @@ class AddProducts extends Component {
     super();
     this.state = {
       category: "",
-      code: "",
-      description: "",
-      uom: "",
-      minQty: "",
-      imgSrc: [],
+      details: {
+        code: "",
+        description: "",
+        uom: "",
+        minQty: "",
+        imgSrc: []
+      },
       bError: false,
       errorMsg: ""
     };
@@ -20,19 +22,25 @@ class AddProducts extends Component {
   splitImgSrc = value => value.split(",").map(link => link.trim());
 
   handleChange = (event, field) => {
-    const { category, code, description, uom, minQty, imgSrc } = this.state;
+    const { category } = this.state;
+    const { code, description, uom, minQty, imgSrc } = this.state.details;
+
     this.setState({
       category: field === "category" ? event.target.value : category,
-      code: field === "code" ? event.target.value : code,
-      description: field === "description" ? event.target.value : description,
-      uom: field === "uom" ? event.target.value : uom,
-      minQty: field === "minQty" ? event.target.value : minQty,
-      imgSrc: field === "imgSrc" ? this.splitImgSrc(event.target.value) : imgSrc
+      details: {
+        code: field === "code" ? event.target.value : code,
+        description: field === "description" ? event.target.value : description,
+        uom: field === "uom" ? event.target.value : uom,
+        minQty: field === "minQty" ? event.target.value : minQty,
+        imgSrc:
+          field === "imgSrc" ? this.splitImgSrc(event.target.value) : imgSrc
+      }
     });
   };
 
   addProduct = async () => {
-    return await fetch(`${API_URL}our-products/add`, {
+    const { code, description, uom, minQty, imgSrc } = this.state.details;
+    return await fetch(`${API_URL}admin/add_product`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -41,11 +49,11 @@ class AddProducts extends Component {
       body: JSON.stringify({
         category: this.state.category,
         details: {
-          code: this.state.code,
-          description: this.state.description,
-          uom: this.state.uom,
-          minQty: this.state.minQty,
-          imgSrc: this.state.imgSrc
+          code,
+          description,
+          uom: uom.toUpperCase(),
+          minQty,
+          imgSrc
         }
       })
     });
@@ -54,25 +62,21 @@ class AddProducts extends Component {
   clearState = () => {
     this.setState({
       category: "",
-      code: "",
-      description: "",
-      uom: "",
-      minQty: "",
-      imgSrc: "",
-      bError: false
+      details: {
+        code: "",
+        description: "",
+        uom: "",
+        minQty: "",
+        imgSrc: []
+      },
+      bError: false,
+      errorMsg: ""
     });
   };
   handleSubmit = async event => {
     event.preventDefault();
-    const {
-      category,
-      code,
-      description,
-      uom,
-      minQty,
-      imgSrc,
-      bError
-    } = this.state;
+    const { category, bError } = this.state;
+    const { code, description, uom, minQty, imgSrc } = this.state.details;
 
     if (isNaN(minQty)) {
       this.setState({
@@ -124,7 +128,7 @@ class AddProducts extends Component {
             <label>Product Code</label>
             <input
               placeholder="e.g. C-001"
-              value={this.state.code}
+              value={this.state.details.code}
               onChange={event => this.handleChange(event, "code")}
             />
           </Form.Field>
@@ -132,7 +136,7 @@ class AddProducts extends Component {
             <label>Product Description</label>
             <input
               placeholder="e.g. Ironing Board Cover"
-              value={this.state.description}
+              value={this.state.details.description}
               onChange={event => this.handleChange(event, "description")}
             />
           </Form.Field>
@@ -140,7 +144,7 @@ class AddProducts extends Component {
             <label>Product Image Links (Separated by comma)</label>
             <input
               placeholder="e.g. https://imgur.com/a/MQ8sc36, https://i.imgur.com/9WtfjjI.jpg"
-              value={this.state.imgSrc}
+              value={this.state.details.imgSrc}
               onChange={event => this.handleChange(event, "imgSrc")}
             />
           </Form.Field>
@@ -148,7 +152,7 @@ class AddProducts extends Component {
             <label>Unit of Measure</label>
             <input
               placeholder="e.g. PCS/CTN"
-              value={this.state.uom}
+              value={this.state.details.uom}
               onChange={event => this.handleChange(event, "uom")}
             />
           </Form.Field>
@@ -156,7 +160,7 @@ class AddProducts extends Component {
             <label>Minimum Order Quantity</label>
             <input
               placeholder="e.g. 50"
-              value={this.state.minQty}
+              value={this.state.details.minQty}
               onChange={event => this.handleChange(event, "minQty")}
             />
           </Form.Field>
