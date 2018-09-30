@@ -6,11 +6,6 @@ import { ADD_RFQ_ITEM } from "../store/types";
 import { RFQ } from "../pages/endpoints";
 
 class OurProducts extends Component {
-  componentDidMount() {
-    const { pathname } = this.props.location;
-    this.props.updateLocation(pathname);
-  }
-
   handleClick = (event, product) => {
     this.props.dispatch({
       type: ADD_RFQ_ITEM,
@@ -27,6 +22,12 @@ class OurProducts extends Component {
     const itemArray = rfqItems.filter(item => item.productId === product_id);
     return itemArray.length > 0 ? itemArray[0].qty : 0;
   };
+
+  componentDidMount() {
+    const { pathname } = this.props.location;
+    this.props.updateLocation(pathname);
+    this.props.getAllProducts();
+  }
 
   render() {
     const { allProducts } = this.props;

@@ -86,6 +86,7 @@ class App extends PureComponent {
                   {...props}
                   updateLocation={this.updateLocation}
                   allProducts={this.state.allProducts}
+                  getAllProducts={this.getAllProducts}
                 />
               )}
             />
