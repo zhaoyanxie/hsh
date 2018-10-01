@@ -9,6 +9,7 @@ import AddProducts from "../pages/addproducts";
 import Rfq from "../pages/rfq";
 import OurStores from "../pages/ourstores";
 import ContactUs from "../pages/contactus";
+import PageNotFound from "../pages/pagenotfound";
 import { API_URL } from "../utils/configVar";
 
 import {
@@ -74,12 +75,14 @@ class App extends PureComponent {
           </header>
           <Switch>
             <Route
+              exact
               path={OUR_PRODUCTS_ADD}
               component={props => (
                 <AddProducts {...props} updateLocation={this.updateLocation} />
               )}
             />
             <Route
+              exact
               path={OUR_PRODUCTS}
               component={props => (
                 <OurProducts
@@ -91,24 +94,28 @@ class App extends PureComponent {
               )}
             />
             <Route
+              exact
               path={OUR_STORES}
               component={props => (
                 <OurStores {...props} updateLocation={this.updateLocation} />
               )}
             />
             <Route
+              exact
               path={CONTACT}
               component={props => (
                 <ContactUs {...props} updateLocation={this.updateLocation} />
               )}
             />
             <Route
+              exact
               path={RFQ_ALL}
               component={props => (
                 <RfqAll {...props} updateLocation={this.updateLocation} />
               )}
             />
             <Route
+              exact
               path={RFQ}
               component={props => (
                 <Rfq
@@ -119,12 +126,14 @@ class App extends PureComponent {
               )}
             />
             <Route
+              exact
               path={SIGN_IN}
               component={props => (
                 <SignIn {...props} updateLocation={this.updateLocation} />
               )}
             />
             <Route
+              exact
               path={ADMIN}
               component={props => (
                 <Admin {...props} updateLocation={this.updateLocation} />
@@ -137,6 +146,7 @@ class App extends PureComponent {
                 <HomePage {...props} updateLocation={this.updateLocation} />
               )}
             />
+            <Route path="*" component={PageNotFound} status={404} />
           </Switch>
           <Footer />
         </div>
